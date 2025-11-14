@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,12 +19,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
-              <div className="w-8 h-8 rounded-full bg-invest-orange flex items-center justify-center text-black font-bold">
-                OG
-              </div>
-              <span className="text-lg font-semibold tracking-wide">
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center space-x-3 group" onClick={closeMenu}>
+              <img 
+                src={logo} 
+                alt="Braymont Asset Group Logo" 
+                className="h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
+              />
+              <span className="text-lg font-semibold tracking-wide hidden sm:block">
                 Braymont Asset Group
               </span>
             </Link>
