@@ -21,24 +21,32 @@ const ContactPage = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.placeholder.toLowerCase()]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/contact/send/", {
+      const response = await fetch(`${API_BASE_URL}/api/contact/send/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      alert(data.message || "Message sent successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      if (response.ok) {
+        alert(data.message || "Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        alert(data.error || "Failed to send message. Please try again.");
+      }
     } catch (error) {
-      alert("Failed to send message. Please try again later.");
+      console.error(error);
+      alert("Failed to send message. Check your connection or backend.");
     }
   };
 
@@ -105,20 +113,25 @@ const ContactPage = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
+              name="name"
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-invest-orange"
+              required
             />
             <input
               type="email"
+              name="email"
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-invest-orange"
+              required
             />
             <input
               type="text"
+              name="subject"
               placeholder="Subject"
               value={formData.subject}
               onChange={handleChange}
@@ -126,6 +139,7 @@ const ContactPage = () => {
             />
             <textarea
               rows="4"
+              name="message"
               placeholder="Message"
               value={formData.message}
               onChange={handleChange}
