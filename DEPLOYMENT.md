@@ -102,9 +102,31 @@ Click on **"Environment"** tab and add:
 
 After both are deployed:
 
-1. **Backend URL:** `https://braymont-backend.onrender.com`
+1. **Backend URL:** `https://braymontassetgroup-backend.onrender.com`
 2. **Frontend Environment Variable:** Set `VITE_API_BASE_URL` to your backend URL
 3. **Redeploy Frontend:** After updating the environment variable, Render will automatically redeploy
+
+---
+
+## 🌐 Custom Domain Setup
+
+### For Custom Domain `https://braymontassetgroup.com`
+
+**Backend Configuration:**
+1. The backend CORS is already configured to allow `https://braymontassetgroup.com` and `https://www.braymontassetgroup.com`
+2. If you set up a custom domain for the backend (e.g., `api.braymontassetgroup.com`), add it to the CORS origins in `backend/server.js`
+
+**Frontend Configuration:**
+1. In Render Dashboard → Frontend Service → Environment Variables
+2. Set `VITE_API_BASE_URL` based on your setup:
+   - **Option A:** If backend has custom domain: `https://api.braymontassetgroup.com`
+   - **Option B:** If using Render URL: `https://braymontassetgroup-backend.onrender.com`
+   - **Option C:** If using same domain with path routing: `https://braymontassetgroup.com`
+
+**Important Notes:**
+- The backend CORS configuration in `server.js` already includes `https://braymontassetgroup.com`
+- After updating environment variables, Render will auto-redeploy
+- Test the connection by submitting a form and checking browser console for errors
 
 ---
 
@@ -164,9 +186,11 @@ NODE_ENV=production
 
 ### Frontend Environment Variables
 ```
-VITE_API_BASE_URL=https://braymont-backend.onrender.com
+VITE_API_BASE_URL=https://braymontassetgroup-backend.onrender.com
 ```
-*(Replace with your actual backend URL)*
+**For Custom Domain Setup:**
+- If your backend is accessible via custom domain (e.g., `https://api.braymontassetgroup.com`), use that instead
+- Or if using the same domain with path routing, use `https://braymontassetgroup.com`
 
 ---
 

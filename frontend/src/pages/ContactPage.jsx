@@ -27,7 +27,7 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://braymontassetgroup-backend.onrender.com";
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact/send/`, {
