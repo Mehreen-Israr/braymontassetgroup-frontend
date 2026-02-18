@@ -14,3 +14,18 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Deployment note (fixing "Failed to load module script ... MIME type")
+
+That browser error typically happens when the app's built JS module URL returns the wrong response (often a 404 that serves `index.html`, or missing `Content-Type` headers).
+
+- **If hosting under a sub-path** (example: `https://example.com/braymont/`):
+  - Set `VITE_BASE_URL=/braymont/` in your deploy environment.
+  - This repo wires React Router to Vite's base, so routes and assets resolve correctly.
+
+- **If hosting at the domain root** (example: `https://example.com/`):
+  - Leave `VITE_BASE_URL` unset (defaults to `/`).
+
+Also ensure your static host serves these with correct content types:
+- `*.js` / `*.mjs`: `text/javascript`
+- `*.css`: `text/css`
