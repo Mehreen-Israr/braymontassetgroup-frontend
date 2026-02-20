@@ -32,13 +32,8 @@ const Home = () => (
 );
 
 const App = () => {
-  // Keep routing compatible with Vite's `base` (and `VITE_BASE_URL` in deploy env).
-  // `import.meta.env.BASE_URL` includes a trailing slash, e.g. "/" or "/my-subpath/".
-  const baseUrl = import.meta.env.BASE_URL || "/";
-  const basename = (baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl) || "/";
-
   return (
-    <Router basename={basename}>
+    <Router>
       <div className="min-h-screen flex flex-col bg-invest-black text-invest-white">
         <Navbar />
 

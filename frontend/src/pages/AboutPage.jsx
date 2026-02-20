@@ -61,7 +61,7 @@ const teamRoles = [
 ];
 
 const processSteps = [
-  { title: "Contract Us", icon: <FileText className="w-6 h-6 text-invest-black" /> },
+  { title: "Contact Us", icon: <FileText className="w-6 h-6 text-invest-black" /> },
   { title: "Meet With Us", icon: <Coffee className="w-6 h-6 text-invest-black" /> },
   { title: "Talk About Your Project", icon: <PieChart className="w-6 h-6 text-invest-black" /> },
   { title: "Implement The Project", icon: <Gavel className="w-6 h-6 text-invest-black" /> },
@@ -155,7 +155,7 @@ const AboutPage = () => {
               Establishment
             </h2>
             <p className="text-lg leading-relaxed text-gray-800">
-              Braymont Asset Group was founded in 2012 with the mission to provide
+              Braymont Asset Group was founded in November 2025 with the mission to provide
               innovative investment solutions to individuals and institutions.
               Our journey began with a clear vision to create a company that
               would combine expert knowledge, strategic thinking, and a

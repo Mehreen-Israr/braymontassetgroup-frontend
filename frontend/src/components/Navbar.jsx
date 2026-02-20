@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex space-x-6 text-sm font-medium">
             <Link to="/" className="hover:text-invest-orange transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-invest-orange transition-colors">About us</Link>
+            <Link to="/about" className="hover:text-invest-orange transition-colors">About Us</Link>
             <Link to="/services" className="hover:text-invest-orange transition-colors">Services</Link>
             <Link to="/real" className="hover:text-invest-orange transition-colors">Real Estate</Link>
             <Link to="/impressum" className="hover:text-invest-orange transition-colors">Impressum</Link>

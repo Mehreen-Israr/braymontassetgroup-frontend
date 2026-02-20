@@ -34,7 +34,7 @@ const Ideas = () => {
             variants={fadeInUp}
             custom={0.2}
           >
-            Established in 2012, <span className="font-semibold text-invest-black">Braymont Asset Group</span> is a Switzerland-based financial services company that provides comprehensive solutions for individuals and corporations. Our mission is to empower clients to achieve their financial aspirations through personalized wealth management, asset management, real estate, and marketing solutions.
+            Established in November 2025, <span className="font-semibold text-invest-black">Braymont Asset Group</span> is a United Kingdom-based financial services company that provides comprehensive solutions for individuals and corporations. Our mission is to empower clients to achieve their financial aspirations through personalized wealth management, asset management, real estate, and marketing solutions.
           </motion.p>
 
           <motion.p

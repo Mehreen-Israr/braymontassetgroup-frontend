@@ -90,7 +90,7 @@ const ContactPage = () => {
               <MapPin className="text-invest-orange w-6 h-6" />
               <div>
                 <h3 className="font-semibold text-invest-black">Address</h3>
-                <p className="text-gray-700">Bundespl. 17, 6300 Zug, Switzerland</p>
+                <p className="text-gray-700">Office 55rb 182-184 High Street North Area 1/1, East Ham, United Kingdom, E6 2JA</p>
               </div>
             </div>
           </div>

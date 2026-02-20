@@ -65,7 +65,7 @@ const Promise = () => {
               Global Reach
             </h3>
             <p className="text-base text-justify leading-relaxed text-gray-700">
-              With partnerships in Switzerland, France, Dubai, the UK, Spain,
+              With partnerships in United Kingdom, France, Dubai, the UK, Spain,
               and Italy, we provide access to premium global investment
               opportunities. Whether you're expanding your portfolio or your
               business, our network ensures seamless cross-border growth and

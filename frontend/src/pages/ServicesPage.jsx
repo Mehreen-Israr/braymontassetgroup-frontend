@@ -419,7 +419,7 @@ const ServicesPage = () => {
       >
         At Braymont Asset Group, we specialize in a unique blend of marketing services tailored to elevate
         your brand’s presence and influence. With a rich portfolio encompassing some of the biggest
-        names in the influencer and YouTube space from Switzerland, France, and Dubai or all around
+        names in the influencer and YouTube space from United Kingdom, France, and Dubai or all around
         the globe, we are equipped to amplify your marketing efforts like never before.
       </motion.p>
 
