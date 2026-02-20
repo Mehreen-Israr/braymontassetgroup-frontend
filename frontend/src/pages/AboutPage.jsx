@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { Building2, ClipboardList, Lightbulb, Users, FileText, Coffee, PieChart, Gavel } from "lucide-react";
 import bgImage from "../assets/About.png";
+import ceoImage from "../assets/ceo.jpeg";
+import investmentImage from "../assets/investment.jpeg";
+import researchImage from "../assets/research.jpeg";
+import portfolioImage from "../assets/portfolio.jpeg";
+import operationsImage from "../assets/operations.jpeg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -39,24 +44,39 @@ const values = [
 
 const teamRoles = [
   {
-    title: "Investment Managers",
+    name: "Irfan",
+    title: "Chief Executive Officer",
     description:
-      "Experts in various asset classes, including equities, fixed income, commodities, and currencies.",
+      "Leading Braymont Asset Group with strategic vision and extensive expertise in financial markets, driving innovation and excellence across all our service offerings.",
+    image: ceoImage,
   },
   {
-    title: "Research Analysts",
+    name: "Martin Frandsen",
+    title: "Investment Manager",
     description:
-      "Provide in-depth analysis of market trends, economic indicators, and company performance.",
+      "Specializes in diverse asset classes including equities, fixed income, commodities, and currencies, delivering strategic investment solutions.",
+    image: investmentImage,
   },
   {
-    title: "Portfolio Managers",
+    name: "Nils Gustafsson",
+    title: "Research Analyst",
     description:
-      "Oversee the implementation of investment strategies and monitor portfolio performance.",
+      "Conducts comprehensive analysis of market trends, economic indicators, and company performance to provide actionable insights.",
+    image: researchImage,
   },
   {
-    title: "Operations Team",
+    name: "Levi Ackermann",
+    title: "Portfolio Manager",
     description:
-      "Ensure seamless execution of trades and provide administrative support.",
+      "Oversees the implementation of investment strategies and monitors portfolio performance, ensuring optimal risk-adjusted returns for our clients.",
+    image: portfolioImage,
+  },
+  {
+    name: "Ruben Vardanyan",
+    title: "Operations Manager",
+    description:
+      "Ensures seamless execution of trades and provides comprehensive administrative support, maintaining operational excellence across all processes.",
+    image: operationsImage,
   },
 ];
 
@@ -229,7 +249,7 @@ const AboutPage = () => {
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true }}
-  className="flex flex-wrap justify-center gap-8"
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 px-6 justify-items-center"
 >
   {teamRoles.map((role, index) => (
     <motion.div
@@ -237,22 +257,34 @@ const AboutPage = () => {
       variants={fadeInUp}
       custom={index * 0.2}
       whileHover={{ scale: 1.06 }}
-      className="group relative w-[260px] h-[320px] bg-gradient-to-br from-white via-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer flex flex-col justify-start overflow-hidden"
+      className="group relative w-[260px] h-[380px] bg-gradient-to-br from-white via-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all cursor-pointer flex flex-col justify-start overflow-hidden"
     >
       {/* Orange Overlay */}
       <div className="absolute inset-0 bg-invest-orange scale-y-0 origin-top transition-transform duration-300 group-hover:scale-y-100 z-0" />
 
       {/* Content */}
-      <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 flex items-center justify-center bg-invest-orange rounded-full transition-colors group-hover:bg-black">
-            <Users className="w-5 h-5 text-white group-hover:text-invest-orange" />
-          </div>
-          <h3 className="text-lg font-semibold text-invest-black transition-colors group-hover:text-black">
-            {role.title}
-          </h3>
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Image - Fixed height for horizontal alignment */}
+        <div className="w-full h-36 mb-4 rounded-lg overflow-hidden bg-gray-100 flex items-start justify-center flex-shrink-0">
+          <img
+            src={role.image}
+            alt={role.name}
+            className="w-full h-full object-contain object-top transition-transform duration-300 group-hover:scale-105"
+          />
         </div>
-        <p className="text-gray-700 text-sm leading-relaxed mt-2 transition-colors group-hover:text-black">
+        
+        {/* Name and Title - Fixed height for horizontal alignment */}
+        <div className="mb-3 h-16 flex-shrink-0">
+          <h3 className="text-lg font-bold text-invest-black transition-colors group-hover:text-black mb-1">
+            {role.name}
+          </h3>
+          <p className="text-sm font-semibold text-invest-orange transition-colors group-hover:text-black">
+            {role.title}
+          </p>
+        </div>
+        
+        {/* Description - Flexible height */}
+        <p className="text-gray-700 text-sm leading-relaxed transition-colors group-hover:text-black flex-grow">
           {role.description}
         </p>
       </div>
