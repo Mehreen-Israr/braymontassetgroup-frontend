@@ -46,7 +46,7 @@ const Hero = () => {
           className="text-xl md:text-2xl font-medium mb-6 text-gray-200"
           variants={fadeUp(0.4)}
         >
-          Premier Investment Company Based In The United Kingdom
+          Premier Investment Company Based In Switzerland
         </motion.h2>
 
         <motion.p
