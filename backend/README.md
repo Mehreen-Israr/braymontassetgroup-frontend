@@ -1,68 +1,96 @@
 # Braymont Asset Group Backend API
 
-This is the backend API server for the Braymont Asset Group website. It handles form submissions and stores them in MongoDB.
+Backend API for form submissions (quote requests and contact messages), with support for:
 
-## Setup Instructions
+- standard Node/Express runtime (`npm start`) for local/Render
+- AWS SAM deployment (Lambda + API Gateway)
+- Serverless Framework deployment (Lambda + API Gateway)
 
-1. **Install Dependencies**
+## Local Setup (Node/Render Style)
+
+1. Install dependencies:
    ```bash
    cd backend
    npm install
    ```
-
-2. **Environment Variables**
-   Create a `.env` file in the backend directory (or use the existing one):
-   ```
-   MONGODB_URI=mongodb+srv://info_db_user:4yd0ISw7yeMBEPaR@cluster0.wquhkij.mongodb.net/?appName=Cluster0
+2. Create `.env` file:
+   ```env
+   MONGODB_URI=your-mongodb-uri
    PORT=8000
+   CORS_ORIGINS=https://braymontassetgroup.com,https://www.braymontassetgroup.com,http://localhost:5173
    ```
-
-3. **Run the Server**
+3. Run backend:
    ```bash
    npm start
    ```
-   
-   For development with auto-reload:
+
+For autoreload during development:
+```bash
+npm run dev
+```
+
+## Deploy With AWS SAM
+
+Prerequisites:
+- AWS CLI configured (`aws configure`)
+- SAM CLI installed
+
+1. Build:
    ```bash
-   npm run dev
+   npm run sam:build
+   ```
+2. First deploy (guided):
+   ```bash
+   npm run sam:deploy:guided
+   ```
+3. Set parameter values during guided deploy:
+   - `MongodbUri` -> your MongoDB URI
+   - `CorsOrigins` -> comma-separated origins allowed to call API
+4. For local SAM testing:
+   - update `env.local.json` with your values
+   - run:
+     ```bash
+     npm run sam:local
+     ```
+
+## Deploy With Serverless Framework
+
+Prerequisites:
+- AWS CLI configured (`aws configure`)
+
+1. Export env vars in your terminal:
+   ```bash
+   export MONGODB_URI="your-mongodb-uri"
+   export CORS_ORIGINS="https://braymontassetgroup.com,https://www.braymontassetgroup.com,http://localhost:5173"
+   ```
+   On PowerShell:
+   ```powershell
+   $env:MONGODB_URI="your-mongodb-uri"
+   $env:CORS_ORIGINS="https://braymontassetgroup.com,https://www.braymontassetgroup.com,http://localhost:5173"
+   ```
+2. Deploy:
+   ```bash
+   npm run sls:deploy
+   ```
+3. Remove stack when done:
+   ```bash
+   npm run sls:remove
    ```
 
-The server will run on `http://localhost:8000` by default.
+## Keeping Render Untouched
+
+- Render can continue deploying `main` exactly the same way as before.
+- Practice SAM/Serverless from your backup branch only.
+- Do not merge this branch into `main` until you decide to.
 
 ## API Endpoints
 
-### POST `/api/contact/request/`
-Handles quote requests from the "Get in Touch" form on the home page.
-
-**Request Body:**
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "area_size": "1000 sq ft",
-  "budget": "$500,000",
-  "message": "I'm interested in..."
-}
-```
-
-### POST `/api/contact/send/`
-Handles contact messages from the Contact page.
-
-**Request Body:**
-```json
-{
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "subject": "Inquiry",
-  "message": "Hello, I have a question..."
-}
-```
-
-### GET `/api/health`
-Health check endpoint to verify the server is running.
+- `POST /api/contact/request/`
+- `POST /api/contact/send/`
+- `GET /api/health`
 
 ## MongoDB Collections
 
-- `quoterequests` - Stores quote request submissions
-- `contactmessages` - Stores contact form submissions
+- `quoterequests`
+- `contactmessages`
 

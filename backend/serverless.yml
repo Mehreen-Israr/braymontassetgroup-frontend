@@ -1,0 +1,34 @@
+service: braymont-backend
+
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  timeout: 30
+  memorySize: 256
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+    CORS_ORIGINS: ${env:CORS_ORIGINS, 'https://braymontassetgroup.com,https://www.braymontassetgroup.com,http://localhost:5173'}
+
+functions:
+  api:
+    handler: lambda.api
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: any
+      - httpApi:
+          path: /
+          method: any
+
+package:
+  patterns:
+    - "!node_modules/**"
+    - "node_modules/serverless-http/**"
+    - "node_modules/express/**"
+    - "node_modules/mongoose/**"
+    - "node_modules/cors/**"
+    - "node_modules/dotenv/**"

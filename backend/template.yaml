@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Braymont backend API via AWS SAM
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 30
+    MemorySize: 256
+
+Resources:
+  BraymontApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: braymont-backend-api
+      Handler: lambda.api
+      CodeUri: .
+      Environment:
+        Variables:
+          MONGODB_URI: !Ref MongodbUri
+          CORS_ORIGINS: !Ref CorsOrigins
+      Events:
+        ApiProxy:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        ApiRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+
+Parameters:
+  MongodbUri:
+    Type: String
+    NoEcho: true
+    Description: MongoDB connection string
+  CorsOrigins:
+    Type: String
+    Default: https://braymontassetgroup.com,https://www.braymontassetgroup.com,http://localhost:5173
+    Description: Comma-separated allowed CORS origins
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
